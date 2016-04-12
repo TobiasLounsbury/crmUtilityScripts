@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/utils/scripts</path>
+    <page_callback>CRM_Utilityscripts_Form_UtilityScripts</page_callback>
+    <title>UtilityScripts</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+</menu>
