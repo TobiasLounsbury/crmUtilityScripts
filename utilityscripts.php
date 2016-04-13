@@ -149,3 +149,36 @@ function getUtilityScripts() {
 
   return $UtilityScripts;
 }
+
+
+
+
+/**
+ * Add navigation  under "Administer Console" menu
+ *
+ * @param $params associated array of navigation menus
+ *
+ */
+function utilityscripts_civicrm_navigationMenu( &$params ) {
+  // get the id of Administer Menu
+  $administerMenuId = CRM_Core_DAO::getFieldValue('CRM_Core_BAO_Navigation', 'Administer', 'id', 'name');
+  $consoleMenuId = CRM_Core_DAO::getFieldValue('CRM_Core_BAO_Navigation', 'Administration Console', 'id', 'name');
+  // skip adding menu if there is no administer menu
+  if ($administerMenuId && $consoleMenuId) {
+    // get the maximum key under adminster menu
+    $maxKey = max( array_keys($params[$administerMenuId]['child'][$consoleMenuId]['child']));
+    $params[$administerMenuId]['child'][$consoleMenuId]['child'][$maxKey+1] =  array (
+      'attributes' => array (
+        'label'      => 'Utility Scripts',
+        'name'       => 'CiviUtilityScripts',
+        'url'        => 'civicrm/utils/scripts?reset=1',
+        'permission' => 'administer CiviCRM',
+        'operator'   => NULL,
+        'separator'  => false,
+        'parentID'   => $administerMenuId,
+        'navID'      => $maxKey+1,
+        'active'     => 1
+      )
+    );
+  }
+}
