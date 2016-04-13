@@ -22,6 +22,14 @@ class CRM_Utilityscripts_Form_UtilityScripts extends CRM_Core_Form {
       $scriptNames, // list of options
       true // is required
     );
+
+    $this->add(
+      'text', // field type
+      'exec_time', // field name
+      'Timeout for this script', // field label
+      false // is required
+    );
+
     $this->addButtons(array(
       array(
         'type' => 'submit',
@@ -41,6 +49,11 @@ class CRM_Utilityscripts_Form_UtilityScripts extends CRM_Core_Form {
     $values = $this->exportValues();
     $scripts = getUtilityScripts();
     if(array_key_exists($values['script_name'], $scripts) && is_callable($scripts[$values['script_name']])) {
+
+      if(array_key_exists("exec_time", $values) && ($values['exec_time'] || $values['exec_time'] == "0")) {
+        ini_set('max_execution_time', $values['exec_time']);
+      }
+
       ob_Start();
       $scripts[$values['script_name']]();
       $results = ob_get_clean();
