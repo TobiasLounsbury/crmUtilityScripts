@@ -22,6 +22,11 @@ $UtilityScripts["UpdateExistingMembershipType"] = function() {
   $relationshipType = CRM_Core_DAO::getFieldValue('CRM_Contact_DAO_RelationshipType', 'Employee of', 'id', 'name_a_b');
 
   /*
+   * A reference variable for the relationship direction
+   */
+  $relationshipDirection = "b_a";
+
+  /*
    * There is no membership type in the civi demo data that
    * exactly fits the niche for which this script was made.
    * So I'm setting it to 1 in case someone wants to run this
@@ -42,7 +47,7 @@ $UtilityScripts["UpdateExistingMembershipType"] = function() {
       'sequential' => 1,
       'id' => $membershipTypeId,
       'relationship_type_id' => $relationshipType,
-      'relationship_direction' => "b_a",
+      'relationship_direction' => $relationshipDirection,
     ));
     if($result['is_error'] == 0) {
       //Everything worked, lets go ahead and process the relationships
