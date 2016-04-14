@@ -1,0 +1,5 @@
+<?php
+
+$UtilityScripts["Blank"] = function() {
+
+};
