@@ -6,6 +6,6 @@
  * of small snippets of code in isolated scopes.
  **/ 
 $UtilityScripts['ScratchPad'] = function() {
-  echo "The Employee relatioinshipt_type_id is: ". CRM_Core_DAO::getFieldValue('CRM_Contact_DAO_RelationshipType', 'Employee of', 'id', 'name_a_b'). "\n";
+  echo "The Employee relationship_type_id is: ". CRM_Core_DAO::getFieldValue('CRM_Contact_DAO_RelationshipType', 'Employee of', 'id', 'name_a_b'). "\n";
   echo "The Partner relationship_type_id is: ". CRM_Core_DAO::getFieldValue('CRM_Contact_DAO_RelationshipType', 'Partner of', 'id', 'name_a_b'). "\n";
 };
