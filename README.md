@@ -7,14 +7,14 @@ Output from scripts is buffered into a console like output, so you can create ni
 
 
 
-###Usage
+### Usage
 * Install this extension
 * Drop a script in the scripts sub-folder of this extension. 
 * Navigate to civicrm/utils/scripts (or use the menu: Administer->Administration Console->Utility Scripts)
 * Select your script
 * Run the script
 
-###Options
+### Options
 The interface gives you the ability to set the timeout if a script is going to process many records or do heavy lifting, you can set the timeout at runtime. 
 
 ### Example
@@ -27,7 +27,7 @@ $UtilityScripts["Example"] = function() {
 };
 ```
 
-####UpdateExistingMembershipType
+#### UpdateExistingMembershipType
 This is the only really useful example included. It was designed to update an existing membership type, that already has memberships created, such that the UI doesn't allow modification of the associated relationship type. 
 e.g. `"You cannot modify relationship type because there are membership records associated with this membership type."`
 It has params at the top for the membership type and relationship type. It updates the membership type, and then does a loop through existing relationships and saves them without modification, thus triggering a recalculation of the inherited memberships. In the original task it was written for, it processed 4300 relationships, and triggered new memberships for 90% of them in a matter of minutes.
